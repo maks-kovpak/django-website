@@ -1,7 +1,9 @@
 {
-  "editor.formatOnSave": true,
   "editor.tabSize": 2,
+  "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": false,
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
