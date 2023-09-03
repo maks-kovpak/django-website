@@ -4,13 +4,17 @@
   "editor.formatOnPaste": false,
   "editor.detectIndentation": false,
   "editor.insertSpaces": false,
+
   "[python]": {
+    "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     },
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
+
   "black-formatter.args": ["--line-length=120"],
+  "flake8.args": ["--line-length=120"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.useEditorConfig": false,
   "prettier.useTabs": false,
@@ -19,6 +23,7 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
+
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
