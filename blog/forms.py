@@ -3,12 +3,8 @@ from django import forms
 from .models import ArticleImage
 
 
-class MultipleFileInput(forms.ClearableFileInput):
-    allow_multiple_selected = True
-
-
 class ArticleImageForm(forms.ModelForm):
-    image = forms.ImageField(widget=MultipleFileInput(), required=False)
+    image = forms.ImageField(widget=forms.ClearableFileInput(), required=False)
 
     class Meta:
         model = ArticleImage

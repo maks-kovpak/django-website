@@ -6,12 +6,13 @@ from .models import Article, ArticleImage, Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("category",)}
     list_display = ("category",)
     fieldsets = (
         (
             "",
             {
-                "fields": ("category",),
+                "fields": ("category", "slug"),
             },
         ),
     )
@@ -53,7 +54,7 @@ class ArticleAdmin(admin.ModelAdmin):
             },
         ),
         (
-            ("Додатково"),
+            ("Additional"),
             {
                 "classes": ("grp-collapse grp-closed",),
                 "fields": ("slug",),
