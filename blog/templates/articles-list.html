@@ -10,7 +10,11 @@
 
 <body>
 	<h1>Publications</h1>
-	{% if category %} {{ category }} {% endif %}
+	<a href="{% url 'home' %}">Go Home</a>
+
+	{% if category %}
+	<p>{{ category }}</p>
+	{% endif %}
 
 	{% for item in items %}
 	<div class="articles-row">

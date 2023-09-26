@@ -25,7 +25,7 @@
 		</div>
 
 		<div>
-			<p>{{ item.description|escape|safe }}</p>
+			{{ item.description|safe }}
 
 			{% if item.images.all %}
 			{% include 'image-carousel.html' with images=images %}

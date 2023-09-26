@@ -1,5 +1,5 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils import timezone
 
@@ -26,7 +26,7 @@ class Category(models.Model):
 
 class Article(models.Model):
     title = models.CharField("Title", max_length=250, help_text="Maximum 250 characters")
-    description = models.TextField(blank=True, verbose_name="Description")
+    description = RichTextUploadingField(blank=True, verbose_name="Description")
     pub_date = models.DateTimeField("Date of publication", default=timezone.now)
     slug = models.SlugField("Slug", unique_for_date="pub_date")
     main_page = models.BooleanField("Main", default=False, help_text="Show on the main page")
