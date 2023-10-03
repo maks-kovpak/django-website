@@ -1,5 +1,5 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
-from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils import timezone
 
@@ -15,10 +15,18 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+    def get_absolute_url(self):
+        try:
+            url = reverse("articles-category-list", kwargs={"slug": self.slug})
+        except:
+            url = "/"
+
+        return url
+
 
 class Article(models.Model):
     title = models.CharField("Title", max_length=250, help_text="Maximum 250 characters")
-    description = models.TextField(blank=True, verbose_name="Description")
+    description = RichTextUploadingField(blank=True, verbose_name="Description")
     pub_date = models.DateTimeField("Date of publication", default=timezone.now)
     slug = models.SlugField("Slug", unique_for_date="pub_date")
     main_page = models.BooleanField("Main", default=False, help_text="Show on the main page")
@@ -26,8 +34,6 @@ class Article(models.Model):
     category = models.ForeignKey(
         Category, related_name="articles", blank=True, null=True, verbose_name="Category", on_delete=models.CASCADE
     )
-
-    objects = models.Manager()
 
     def get_absolute_url(self):
         try:
