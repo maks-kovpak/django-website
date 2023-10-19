@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Blog about technologies | DigitalDive</title>
+
+	<!-- Libraries -->
+	<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+		integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+
+	<!-- Styles -->
+	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+	{% block css_styles %}{% endblock css_styles %}
+</head>
+
+<body class="min-h-[100vh] flex flex-col">
+	{% include 'components/header.html' %}
+
+	<main class="px-7 md:py-20 py-10 grow">
+		{% block content %}{% endblock content %}
+	</main>
+
+	{% include 'components/footer.html' %}
+
+	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"
+		integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
+	<script type="module" src="{% static 'js/index.js' %}"></script>
+	{% block js_scripts %}{% endblock js_scripts %}
+</body>
+
+</html>

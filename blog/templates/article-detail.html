@@ -1,39 +1,72 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{{ item.title }}</title>
-</head>
-
-<body>
-	<div>
-		<ol class="breadcrumb">
-			<li><a href="{% url 'home' %}">Main</a></li>
-			<li><a href="{% url 'articles-list' %}">Publications</a></li>
-			<li><a href="{{ item.category.get_absolute_url }}">{{ item.category|upper }}</a></li>
-			<li>{{ item.title|upper }}</li>
+{% block content %}
+<section class="article-section w-full md:w-4/5 lg:w-4/6 m-auto">
+	<nav class="flex mb-5" aria-label="Breadcrumb">
+		<ol class="inline-flex items-center space-x-1 md:space-x-3">
+			<li class="inline-flex items-center">
+				<a href="{% url 'home' %}"
+					class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+					<svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+						viewBox="0 0 20 20">
+						<path
+							d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+					</svg>
+					Home
+				</a>
+			</li>
+			<li>
+				<div class="flex items-center">
+					<svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+						viewBox="0 0 6 10">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="m1 9 4-4-4-4" />
+					</svg>
+					<a href="{% url 'articles-category-list' item.category.slug %}"
+						class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">
+						{{ item.category }}
+					</a>
+				</div>
+			</li>
+			<li aria-current="page">
+				<div class="flex items-center">
+					<svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+						viewBox="0 0 6 10">
+						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+							d="m1 9 4-4-4-4" />
+					</svg>
+					<span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ item.title }}</span>
+				</div>
+			</li>
 		</ol>
+	</nav>
 
-		<div>
-			<h3>{{ item.title }}</h3>
-			<h5>{{ item.pub_date|date:"d E Y"|safe|linebreaks }}</h5>
-		</div>
-
-		<div>
-			{{ item.description|safe }}
-
-			{% if item.images.all %}
-			{% include 'image-carousel.html' with images=images %}
-			{% endif %}
-
-		</div>
-		<div class='clearfix'></div>
+	<div class="banner md:p-7 px-0 py-7">
+		<h1
+			class="m-auto mb-4 md:text-center text-left max-w-4xl text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+			{{ item.title }}
+		</h1>
 	</div>
-</body>
 
-</html>
+	<div class="flex justify-center">
+		<div class="inline-block p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+			role="alert">
+			<span class="font-medium">{{ item.pub_date|date:"d E Y"|safe|linebreaks }}</span>
+		</div>
+
+		<div class="inline-block p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
+			role="alert">
+			<span class="reading-time font-medium"></span>
+		</div>
+	</div>
+
+	<article class="article-body prose max-w-none">
+		{% if item.images.all %}
+		{% include 'components/image-carousel.html' with images=images %}
+		{% endif %}
+
+		{{ item.description|safe }}
+	</article>
+</section>
+{% endblock content %}

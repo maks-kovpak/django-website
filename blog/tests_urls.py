@@ -29,7 +29,7 @@ class HomeTests(TestCase):
 
     def test_article_detail(self):
         url = reverse(
-            "news-detail",
+            "article-detail",
             args=("2023", "09", "07", "5g-connectivity"),
         )
         self.assertEquals(resolve(url).func.view_class, views.ArticleDetail)
