@@ -3,12 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const carousel = new Splide('#image-carousel', {
       type: 'loop',
       gap: '1rem',
-      // fixedHeight: '500px',
-      // breakpoints: {
-      //   768: {
-      //     fixedHeight: '300px',
-      //   },
-      // },
     });
     carousel.mount();
   }
