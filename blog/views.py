@@ -1,24 +1,27 @@
-from django.views.generic import DateDetailView, ListView
+from django.views.generic import DateDetailView, ListView, TemplateView
+from django.views.generic.base import ContextMixin
 
 from .models import Article, Category
 
 
-class HomePageView(ListView):
+class CategoriesMixin(ContextMixin):
+    def get_context_data(self, **kwargs: any) -> dict[str, any]:
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+        return context
+
+
+class HomePageView(CategoriesMixin, TemplateView):
     model = Article
     template_name = "index.html"
-    context_object_name = "categories"
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         context["articles"] = Article.objects.filter(main_page=True)[:5]
         return context
 
-    def get_queryset(self, *args, **kwargs):
-        categories = Category.objects.all()
-        return categories
 
-
-class ArticleDetail(DateDetailView):
+class ArticleDetail(CategoriesMixin, DateDetailView):
     model = Article
     template_name = "article-detail.html"
     context_object_name = "item"
@@ -28,17 +31,17 @@ class ArticleDetail(DateDetailView):
     allow_future = True
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ArticleDetail, self).get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
 
         try:
             context["images"] = context["item"].images.all()
-        except:
+        except Exception:
             pass
 
         return context
 
 
-class ArticleList(ListView):
+class ArticleList(CategoriesMixin, ListView):
     model = Article
     template_name = "articles-list.html"
     context_object_name = "items"
