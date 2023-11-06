@@ -66,25 +66,27 @@ Before you begin, ensure you have met the following requirements:
    source .venv/bin/activate
    ```
 
-5. Install the project dependencies:
+5. Set needed environment variables from `.env.example`
+
+6. Install the project dependencies:
 
    ```shell
    pip install -r requirements.txt
    ```
 
-6. Migrate the database:
+7. Migrate the database:
 
    ```shell
    python manage.py migrate
    ```
 
-7. Start the development server:
+8. Start the development server:
 
    ```shell
    python manage.py runserver
    ```
 
-8. Open your web browser and visit [http://localhost:8000](http://localhost:8000) to access the Django website.
+9. Open your web browser and visit [http://localhost:8000](http://localhost:8000) to access the Django website.
 
 ## Usage
 
