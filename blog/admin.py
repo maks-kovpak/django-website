@@ -63,8 +63,6 @@ class ArticleAdmin(admin.ModelAdmin):
     )
 
     def delete_file(self, pk, request):
-        """Delete an image"""
-
         obj = get_object_or_404(ArticleImage, pk=pk)
         return obj.delete()
 

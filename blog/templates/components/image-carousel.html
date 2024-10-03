@@ -1,19 +1,19 @@
 {% load static %}
 
 {% spaceless %}
-{% if images|length_is:"1" %}
-<img src="{{ images.0.image.url }}" alt="{{ images.0.description }}" class="w-full rounded-2xl">
-{% else %}
-<section id="image-carousel" class="splide" aria-label="Article Images">
-	<div class="splide__track">
-		<ul class="splide__list">
-			{% for image in images %}
-			<li class="splide__slide">
-				<img src="{{ image.image.url }}" alt="{{ image.description }}" class="rounded-2xl h-full w-full object-cover m-0">
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
-</section>
-{% endif %}
+	{% if images|length_is:"1" %}
+		<img src="{{ images.0.image.url }}" alt="{{ images.0.description }}" class="w-full rounded-2xl">
+	{% else %}
+		<section id="image-carousel" class="splide" aria-label="Article Images">
+			<div class="splide__track">
+				<ul class="splide__list">
+					{% for image in images %}
+						<li class="splide__slide">
+							<img src="{{ image.image.url }}" alt="{{ image.description }}" class="rounded-2xl h-full w-full object-cover m-0">
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</section>
+	{% endif %}
 {% endspaceless %}
