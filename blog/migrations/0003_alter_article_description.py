@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0002_alter_category_options_category_slug_and_more'),
+        ("blog", "0002_alter_category_options_category_slug_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='article',
-            name='description',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, verbose_name='Description'),
+            model_name="article",
+            name="description",
+            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, verbose_name="Description"),
         ),
     ]

@@ -32,7 +32,12 @@ class Article(models.Model):
     main_page = models.BooleanField("Main", default=False, help_text="Show on the main page")
 
     category = models.ForeignKey(
-        Category, related_name="articles", blank=True, null=True, verbose_name="Category", on_delete=models.CASCADE
+        Category,
+        related_name="articles",
+        blank=True,
+        null=True,
+        verbose_name="Category",
+        on_delete=models.CASCADE,
     )
 
     def get_absolute_url(self):
